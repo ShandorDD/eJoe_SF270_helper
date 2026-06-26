@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eJoe SF-270 Toolkit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #0F1A2E;
+      color: #E8EDF5;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    .header {
+      padding: 48px 24px 0;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      color: #5B8DBE;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .logo {
+      font-size: 42px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .logo span {
+      color: #4A8FD4;
+    }
+    .tagline {
+      font-size: 16px;
+      color: #7B91B0;
+      line-height: 1.6;
+      max-width: 440px;
+      margin: 0 auto 48px;
+    }
+
+    /* ── Divider rule ── */
+    .rule {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #1E3050, transparent);
+    }
+
+    /* ── Tools grid ── */
+    .tools {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 20px 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .tool-card {
+      background: #162035;
+      border: 1px solid #1E3050;
+      border-radius: 12px;
+      padding: 28px 28px 24px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: border-color .2s, transform .15s, background .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .tool-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    .tool-card:hover {
+      border-color: var(--accent);
+      background: #1A2640;
+      transform: translateY(-2px);
+    }
+    .tool-card:hover::before { opacity: 1; }
+
+    .tool-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    .tool-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+    .tool-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .tool-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+      opacity: 0.85;
+    }
+    .tool-desc {
+      font-size: 14px;
+      color: #7B91B0;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .tool-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      color: #5B7A9E;
+      border: 1px solid #1E3050;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.04em;
+    }
+    .tool-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 18px;
+      transition: gap .15s;
+    }
+    .tool-card:hover .tool-cta { gap: 10px; }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 0 24px 48px;
+      font-size: 11px;
+      color: #2E4460;
+      line-height: 1.8;
+    }
+    .footer a { color: #3D5A80; text-decoration: none; }
+    .footer a:hover { color: #5B8DBE; }
+
+    /* ── Disclaimer banner ── */
+    .disclaimer {
+      max-width: 680px;
+      margin: 0 auto 40px;
+      padding: 14px 20px;
+      background: rgba(30, 48, 80, 0.5);
+      border: 1px solid #1E3050;
+      border-radius: 8px;
+      font-size: 12px;
+      color: #4A6080;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 540px) {
+      .logo { font-size: 32px; }
+      .tool-card { padding: 22px 20px 20px; }
+      .tool-name { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="eyebrow">Federal Grants · Payment Requests · SF-270</div>
+    <div class="logo">e<span>Joe</span></div>
+    <p class="tagline">
+      A free browser-based toolkit to help grant recipients understand,
+      prepare, and review SF-270 payment requests.
+    </p>
+  </header>
+
+  <div class="rule"></div>
+
+  <div class="tools">
+
+    <!-- Tool 1: Wizard -->
+    <a href="wizard.html" class="tool-card" style="--accent: #3B82F6;">
+      <div class="tool-header">
+        <div>
+          <div class="tool-number">TOOL 01</div>
+          <div class="tool-name">SF-270 Setup Wizard</div>
+        </div>
+        <div class="tool-icon">🧭</div>
+      </div>
+      <p class="tool-desc">
+        New to the SF-270? The wizard walks you through every concept
+        in plain language — one question at a time. Learn what each field
+        means, why it matters, and how your answers determine the type
+        of payment request you're submitting.
+      </p>
+      <div class="tool-tags">
+        <span class="tag">guided</span>
+        <span class="tag">plain language</span>
+        <span class="tag">step-by-step</span>
+        <span class="tag">educational</span>
+      </div>
+      <div class="tool-cta">Start the wizard →</div>
+    </a>
+
+    <!-- Tool 2: Helper / Form Builder -->
+    <a href="helper.html" class="tool-card" style="--accent: #10B981;">
+      <div class="tool-header">
+        <div>
+          <div class="tool-number">TOOL 02</div>
+          <div class="tool-name">SF-270 Form Builder</div>
+        </div>
+        <div class="tool-icon">📋</div>
+      </div>
+      <p class="tool-desc">
+        Fill out your SF-270 in a clean, structured interface.
+        Enter your financial data in plain terms — the builder maps
+        it to the correct form fields, auto-calculates Sections 11
+        and 12, and exports a completed PDF ready for review.
+      </p>
+      <div class="tool-tags">
+        <span class="tag">form builder</span>
+        <span class="tag">auto-calculate</span>
+        <span class="tag">PDF export</span>
+        <span class="tag">Section 11 & 12</span>
+      </div>
+      <div class="tool-cta">Open form builder →</div>
+    </a>
+
+    <!-- Tool 3: Validator -->
+    <a href="validator.html" class="tool-card" style="--accent: #F59E0B;">
+      <div class="tool-header">
+        <div>
+          <div class="tool-number">TOOL 03</div>
+          <div class="tool-name">SF-270 Validator</div>
+        </div>
+        <div class="tool-icon">🔍</div>
+      </div>
+      <p class="tool-desc">
+        Upload a completed SF-270 PDF for quality control review.
+        The validator checks required fields, date logic, payment type
+        accuracy, and all Section 11 and 12 calculations. Supports
+        fillable PDFs and scanned forms via OCR.
+      </p>
+      <div class="tool-tags">
+        <span class="tag">QC validation</span>
+        <span class="tag">math checks</span>
+        <span class="tag">OCR support</span>
+        <span class="tag">export report</span>
+      </div>
+      <div class="tool-cta">Open validator →</div>
+    </a>
+
+  </div>
+
+  <div class="disclaimer">
+    These tools are for <strong>educational purposes only</strong> and do not constitute financial,
+    legal, or accounting advice. The submitter bears sole responsibility for the accuracy
+    of all information submitted to federal agencies.
+    <br />Not affiliated with or endorsed by any federal agency or the Office of Management and Budget.
+  </div>
+
+  <footer class="footer">
+    eJoe SF-270 Toolkit &nbsp;·&nbsp; OMB 4040-0012 &nbsp;·&nbsp; Exp. 06/30/2028<br />
+    <a href="README.md">Disclaimer & Terms</a>
+  </footer>
+
+</body>
+</html>
